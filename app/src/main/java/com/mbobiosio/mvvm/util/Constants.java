@@ -9,4 +9,6 @@ package com.mbobiosio.mvvm.util;
 public class Constants {
 
     public static final String BASE_URL = "http://jsonplaceholder.typicode.com/";
+    public static final String PROFILE_BASE_URL = "http://futbalbuzz-001-site1.ctempurl.com/";
+
 }
