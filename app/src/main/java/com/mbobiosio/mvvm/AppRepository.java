@@ -26,9 +26,7 @@ public class AppRepository {
         mAPIService = ProfileAPIBuilder.getClient().create(APIService.class);
     }
 
-    public LiveData<User> userProfile(int user, int id) {
-        final MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
-
+    public void userProfile(int user, int id, MutableLiveData<User> userMutableLiveData) {
         mAPIService.getUserProfile(user, id)
                 .enqueue(new Callback<User>() {
                     @Override
@@ -41,9 +39,6 @@ public class AppRepository {
 
                     }
                 });
-
-        return userMutableLiveData;
-
     }
 
 }

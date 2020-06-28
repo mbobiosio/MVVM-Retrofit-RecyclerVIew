@@ -1,6 +1,7 @@
 package com.mbobiosio.mvvm.views;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.mbobiosio.mvvm.AppRepository;
@@ -13,16 +14,20 @@ import com.mbobiosio.mvvm.model.User;
  * Nigeria.
  */
 public class ProfileViewModel extends ViewModel {
+    private AppRepository repository;
 
-    private LiveData<User> mUserLiveData = null;
+    private MutableLiveData<User> mUser = new MutableLiveData<>();
+    private LiveData<User> mUserLiveData = mUser;
 
     public ProfileViewModel() {
-        AppRepository repository = new AppRepository();
-        mUserLiveData = repository.userProfile(1, 1);
+        repository = new AppRepository();
     }
 
-    public LiveData<User> getUser() {
+    public LiveData<User> getUserObservable() {
         return mUserLiveData;
     }
 
+    public void getUser(int user, int id) {
+        repository.userProfile(user, id, mUser);
+    }
 }
